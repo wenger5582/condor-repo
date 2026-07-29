@@ -3,3 +3,4 @@ uvicorn[standard]
 feedparser
 httpx
 apscheduler
+requests
