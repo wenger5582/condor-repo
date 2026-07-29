@@ -4,5 +4,3 @@ feedparser
 httpx
 apscheduler
 requests
-lxml
-beautifulsoup4
