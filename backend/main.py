@@ -91,3 +91,25 @@ async def startup():
         print(f"Scheduler fail {e}", file=sys.stderr)
 
 HTML = """
+Cargando inteligencia TURBO...
+
+"""
+@app.get("/", response_class=HTMLResponse)
+async def dashboard():
+    return HTML
+
+@app.get("/api/health")
+async def health():
+    return {"status":"ok","modo":"REAL TURBO","version":"V12.6","fuentes_totales":len(FUENTES),"fuentes_ok":CACHE["fuentes_ok"],"ultima_actualizacion":CACHE["ultima_actualizacion"],"noticias_en_cache":len(CACHE["noticias"]),"kpis":CACHE["kpis"],"debug":CACHE["debug"]}
+
+@app.get("/api/noticias/realtime")
+async def noticias():
+    return {"total":len(CACHE["noticias"]),"ultima_actualizacion":CACHE["ultima_actualizacion"],"noticias":CACHE["noticias"]}
+
+@app.get("/api/riesgo/kpis")
+async def kpis():
+    return CACHE["kpis"]
+
+@app.get("/api/debug")
+async def debug():
+    return {"debug":CACHE["debug"],"fuentes":len(FUENTES)}
